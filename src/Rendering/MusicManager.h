@@ -8,15 +8,19 @@
 
 #include "RenderData.h"
 
+#include "../MusicData/Song.h"
+
 /**
  * This class handles all the rendering calculations.
  */
-class MusicRenderer
+class MusicManager
 {
 public:
-    MusicRenderer();
+    MusicManager();
 
     void Render();
+
+    void SetSong(std::shared_ptr<Song> song) { m_Song = song; }
 
 public:
 
@@ -43,6 +47,8 @@ public:
 
     std::vector<Vec2<float>> pagePositions;
     std::vector<Vec2<float>> systemPositions;
+
+    std::shared_ptr<Song> m_Song;
 
     float pageGap = 80.0f;
 

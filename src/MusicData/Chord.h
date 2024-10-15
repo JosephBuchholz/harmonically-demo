@@ -1,0 +1,29 @@
+#pragma once
+
+#include <string>
+#include <functional>
+
+#include "../Rendering/RenderData.h"
+#include "VisibleElement.h"
+#include "../Utils/BoundingBox.h"
+#include "ChordSymbol.h"
+
+class Chord : public VisibleElement
+{
+public:
+    Chord();
+
+    void Init(Vec2<float> pos);
+
+    void Render(RenderData& renderData, Vec2<float> measurePosition) const;
+
+    BoundingBox GetBoundingBox() const;
+
+public:
+    ChordSymbol chordSymbol;
+
+    float duration = 1.0f;
+
+    float beatPosition = 0.0f;
+    float beatPositionInSong = 0.0f;
+};

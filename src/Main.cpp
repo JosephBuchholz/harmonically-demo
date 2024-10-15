@@ -1,9 +1,32 @@
 #include "Rendering/Renderer.h"
-#include "Rendering/MusicRenderer.h"
+#include "Rendering/MusicManager.h"
  
 int main()
 {
-    MusicRenderer musicRenderer = MusicRenderer();
+    MusicManager manager = MusicManager();
+
+    std::shared_ptr<Song> song = std::make_shared<Song>();
+
+    std::shared_ptr<Instrument> instrument = std::make_shared<Instrument>("Guitar");
+    
+    std::shared_ptr<Staff> staff = std::make_shared<Staff>();
+
+    std::shared_ptr<Measure> measure = std::make_shared<Measure>();
+
+    std::shared_ptr<Chord> chord = std::make_shared<Chord>();
+
+    measure->AddChord(chord);
+
+    measure->Init(MusicDisplayConstants());
+
+    staff->AddMeasure(measure);
+
+    instrument->AddStaff(staff);
+
+    song->AddInstrument(instrument);
+
+
+    manager.SetSong(song);
 
     Renderer& renderer = Renderer::GetInstance();
  
@@ -23,7 +46,7 @@ int main()
         renderer.Clear();
 
         // Render the music
-        musicRenderer.Render();
+        manager.Render();
  
         // Update the window
         renderer.Display();

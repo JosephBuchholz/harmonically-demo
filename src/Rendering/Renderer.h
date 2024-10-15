@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../Utils/Vec2.h"
+#include "../Utils/BoundingBox.h"
 #include "Paint.h"
 
 class Renderer
@@ -30,7 +31,7 @@ public:
 	void DrawRect(Vec2<float> position, Vec2<float> size, const Paint& paint = Paint());
 	void DrawText(const std::string& text, Vec2<float> position, const Paint& paint = Paint());
 
-	//BoundingBox MeasureText(const std::string& text, const Paint& paint = Paint());
+	BoundingBox MeasureText(const std::string& text, const Paint& paint = Paint());
 
 private:
 	std::string EncodePaintObject(const Paint& paint, float scale = 1.0f);

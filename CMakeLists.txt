@@ -19,13 +19,20 @@ add_executable(
     src/Main.cpp
     src/Utils/Converters.cpp
     src/Utils/Math.cpp
-    src/Rendering/Line.cpp
     src/Rendering/Renderer.cpp
     src/Rendering/Renderer.cpp
-    src/Rendering/MusicRenderer.cpp
+    src/Rendering/MusicManager.cpp
     src/Rendering/RenderData.cpp
     src/Debugging/Logging.cpp
-
+    src/MusicData/Chord.cpp
+    src/MusicData/Instrument.cpp
+    src/MusicData/Lyric.cpp
+    src/MusicData/Measure.cpp
+    src/MusicData/Song.cpp
+    src/MusicData/Staff.cpp
+    src/MusicData/TextElement.cpp
+    src/MusicData/ChordSymbol.cpp
+    src/Utils/BoundingBox.cpp
     )
 target_link_libraries(main PRIVATE sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)

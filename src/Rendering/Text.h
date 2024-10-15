@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+
 #include "Paint.h"
 #include "../Utils/Vec2.h"
 
@@ -9,16 +10,9 @@
  */
 struct Text
 {
-
     Text() {}
-
     Text(const std::string& text, Vec2<float> position, const Paint& paint = Paint())
-            : text(text), position(position), paint(paint) {
-    }
-
-    Text(const std::string& text, float positionX, float positionY, const Paint& paint = Paint())
-            : text(text), position({ positionX, positionY }), paint(paint) {
-    }
+            : text(text), position(position), paint(paint) {}
 
     std::string text = "";
     Vec2<float> position = { 0.0f, 0.0f };

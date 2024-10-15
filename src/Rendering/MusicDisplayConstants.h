@@ -1,6 +1,8 @@
-#pragma once
+/**
+ * Defaults/settings for how the music should be displayed.
+ */
 
-//#include "MusicData/System.h"
+#pragma once
 
 #include "../MusicData/Types.h"
 
@@ -9,7 +11,6 @@
 #define DEFAULT_PAGE_WIDTH 1233.87f
 #define DEFAULT_PAGE_HEIGHT 1596.77f
 
-//#define DEFAULT_LEFT_MARGIN 80.0f
 #define DEFAULT_LEFT_MARGIN 110.0f
 #define DEFAULT_RIGHT_MARGIN 80.0f
 #define DEFAULT_TOP_MARGIN 80.0f

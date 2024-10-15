@@ -61,23 +61,7 @@ void Renderer::DrawText(const std::string& text, Vec2<float> position, const Pai
     m_Window.draw(rendererableText);
 }
 
-/*BoundingBox Renderer::MeasureText(const std::string &text, const Paint &paint)
+BoundingBox Renderer::MeasureText(const std::string &text, const Paint &paint)
 {
-    BoundingBox boundingBox;
-    float* boundingBoxArray = MeasureTextCallback(text.c_str(), EncodePaintObject(paint).c_str());
-
-    if (boundingBoxArray == nullptr)
-    {
-        LOGE("BoundingBoxArray from JS is nullptr");
-        return boundingBox;
-    }
-
-    boundingBox.position.x = boundingBoxArray[0];
-    boundingBox.position.y = boundingBoxArray[1];
-    boundingBox.size.x = boundingBoxArray[2];
-    boundingBox.size.y = boundingBoxArray[3];
-
-    free(boundingBoxArray);
-
-    return boundingBox;
-}*/
+    return BoundingBox();
+}

@@ -4,6 +4,9 @@
 
 #include "Converters.h"
 
+/**
+ * A structure that stores two values of type T.
+ */
 template<typename T>
 struct Vec2
 {
@@ -13,11 +16,7 @@ public:
     Vec2(const Vec2<T>& obj) : x(obj.x), y(obj.y) {}
 
 public:
-
-    std::string GetPrintableString() const { return "x: " + ToString(x) + ", y: " + ToString(y); }
-
-public:
-
+    // Basic opperators
     Vec2<T> operator+(const Vec2<T>& rhs) const
     {
         return { this->x + rhs.x, this->y + rhs.y };
