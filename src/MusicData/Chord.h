@@ -23,6 +23,8 @@ public:
 
     BoundingBox GetBoundingBox() const;
 
+    void SetPosition(Vec2<float> position) { this->position = position; }
+
 public:
     ChordSymbol chordSymbol;
 

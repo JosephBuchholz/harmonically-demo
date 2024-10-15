@@ -42,8 +42,6 @@ MusicManager::MusicManager()
     InstNameTextPaint = Paint();
     InstNameTextPaint.textSize = 9.0f;
     InstNameTextPaint.align = Paint::Align::Right;
-
-    m_Song = std::make_shared<Song>();
 }
 
 void MusicManager::Render()

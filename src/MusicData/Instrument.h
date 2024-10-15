@@ -6,7 +6,7 @@
 #include "Staff.h"
 #include "VisibleElement.h"
 
-class Instrument : VisibleElement
+class Instrument : public VisibleElement
 {
 public:
     Instrument(const std::string& name)

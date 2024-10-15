@@ -17,6 +17,7 @@ add_executable(
     main
 
     src/Main.cpp
+    src/Demo.cpp
     src/Utils/Converters.cpp
     src/Utils/Math.cpp
     src/Rendering/Renderer.cpp

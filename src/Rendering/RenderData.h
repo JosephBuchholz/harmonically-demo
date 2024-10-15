@@ -84,7 +84,6 @@ class RenderData
 public:
     void AddLine(const Line& line);
     void AddText(const Text& text);
-    void AddDebugDot(Vec2<float> position);
 
     std::vector<Line> m_lines;
     std::vector<Text> m_texts;

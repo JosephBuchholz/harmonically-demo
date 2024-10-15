@@ -19,14 +19,8 @@ public:
     void Render(RenderData& renderData, Vec2<float> parentPosition, bool isPickup = false) const;
 
 public:
-
     float beatPosition = 0.0f;
-    float duration = 1.0f;
-
-    bool isPickupToNextMeasure = false;
-    bool startsPickup = false;
-    Vec2<float> pickupPosition = { 0.0f, 0.0f };
-    std::shared_ptr<LyricPickup> parentLyricPickup;
+    float duration = 0.0f;
 
     TextElement lyricText;
 };

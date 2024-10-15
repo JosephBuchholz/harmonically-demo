@@ -24,15 +24,8 @@ private:
 
 public:
     float width = 0.0f;
-
-    int divisions = 0;
-
     float duration = 0.0f;
 
     std::vector<std::shared_ptr<Chord>> m_Chords;
     std::vector<std::shared_ptr<Lyric>> m_Lyrics;
-
-    std::shared_ptr<LyricPickup> lyricPickup;
-
-    BoundingBox m_BoundingBox;
 };
