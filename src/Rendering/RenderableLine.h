@@ -6,10 +6,10 @@
 /**
  * An object that holds data needed to render a line.
  */
-struct Line
+struct RenderableLine
 {
-    Line() {}
-    Line(Vec2<float> start, Vec2<float> end, Paint paint = Paint())
+    RenderableLine() {}
+    RenderableLine(Vec2<float> start, Vec2<float> end, Paint paint = Paint())
         : start(start), end(end), paint(paint) {}
 
     Vec2<float> start = { 0.0f, 0.0f };

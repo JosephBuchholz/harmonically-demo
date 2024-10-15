@@ -4,14 +4,12 @@
 #include "../Rendering/RenderData.h"
 #include "../Utils/Converters.h"
 
-#define DEFAULT_PADDING 2.0f
-
+/**
+* A structure that stores bounds in the form of rectangle/box.
+*/
 class BoundingBox
 {
 public:
-
-    BoundingBox();
-
     float GetLeft() const { return position.x; }
     float GetRight() const { return position.x + size.x; }
 
@@ -39,7 +37,7 @@ public:
      *
      * @param padding The amount of padding.
      */
-    BoundingBox AddPadding(float padding = DEFAULT_PADDING);
+    BoundingBox AddPadding(float padding = 1.0f);
 
     /**
      * Makes the dimensions of this bounding box positive while adjusting

@@ -8,10 +8,10 @@
 /**
  * An object that holds data needed to render text.
  */
-struct Text
+struct RenderableText
 {
-    Text() {}
-    Text(const std::string& text, Vec2<float> position, const Paint& paint = Paint())
+    RenderableText() {}
+    RenderableText(const std::string& text, Vec2<float> position, const Paint& paint = Paint())
             : text(text), position(position), paint(paint) {}
 
     std::string text = "";

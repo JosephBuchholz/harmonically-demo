@@ -3,7 +3,7 @@
 
 #if DEBUG
 
-#if defined WEB
+#if defined WEB || defined WINDOWS
 
 void _LogLevelAndTag(const std::string& colorFormat, const char* logLevel, const char* tag, const char* format, va_list args)
 {

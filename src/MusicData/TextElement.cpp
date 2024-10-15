@@ -6,10 +6,7 @@ void TextElement::Render(RenderData& renderData, Vec2<float> parentPosition, Pai
 {
     ModifyPaint(parentPaint);
 
-    std::string t = text;
-    if (t == "")
-        t = "e";
-    renderData.AddText(Text(t, { position.x + parentPosition.x, position.y + parentPosition.y }, parentPaint));
+    renderData.AddText(RenderableText(text, { position.x + parentPosition.x, position.y + parentPosition.y }, parentPaint));
 }
 
 
@@ -17,7 +14,7 @@ BoundingBox TextElement::GetBoundingBox(Paint parentPaint) const
 {
     ModifyPaint(parentPaint);
 
-    BoundingBox bb = RenderMeasurement::GetTextBoundingBox(Text(text, { 0.0f, 0.0f }, parentPaint));
+    BoundingBox bb = RenderMeasurement::GetTextBoundingBox(RenderableText(text, { 0.0f, 0.0f }, parentPaint));
 
     return bb;
 }

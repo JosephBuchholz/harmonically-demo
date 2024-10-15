@@ -6,16 +6,6 @@
 
 #define DEBUG 1
 
-#define WEB
+#define WINDOWS
 
 #include "Logging.h"
-
-#if DEBUG
-
-#define SHOW_BOUNDING_BOXES 0
-
-#if SHOW_BOUNDING_BOXES
-    #define DEBUG_BOUNDING_BOXES 1
-#endif
-
-#endif

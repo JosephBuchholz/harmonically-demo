@@ -1,14 +1,15 @@
 #include "Demo.h"
 
-#include <array>
 #include <vector>
 #include <string>
-#include <iostream>
 
 #include "Rendering/Renderer.h"
 #include "Rendering/MusicManager.h"
 
-std::vector<std::string> Split(const std::string& string, char delim)
+/**
+* Splits the given string into a list of substrings sperated by the given delimiter.
+*/
+static std::vector<std::string> Split(const std::string& string, char delim)
 {
     std::vector<std::string> strings;
     std::string current = "";
@@ -34,17 +35,20 @@ std::vector<std::string> Split(const std::string& string, char delim)
     return strings;
 }
 
-std::shared_ptr<Song> ConstructSong()
+/**
+* Creates the Song object for this demo.
+*/
+static std::shared_ptr<Song> ConstructSong()
 {
     std::shared_ptr<Song> song = std::make_shared<Song>("Amazing Grace", Vec2<float>{ 800.0f, 200.0f });
     song->position = { 40.0f, 40.0f };
 
     std::shared_ptr<Instrument> instrument = std::make_shared<Instrument>("Guitar");
-
     instrument->position = { 0.0f, 80.0f };
     
     std::shared_ptr<Staff> staff = std::make_shared<Staff>();
 
+    // Add some chords and measures
     std::vector<std::string> chordGroupings = Split("| C Gm | C | F | C | C | C | G | G | C | C | F | C | Am | G6 | F | C |", '|');
     for (const auto& chordGrouping : chordGroupings)
     {
@@ -63,6 +67,7 @@ std::shared_ptr<Song> ConstructSong()
         staff->AddMeasure(measure);
     }
 
+    // Add some lyrics to those measures
     std::vector<std::string> lyricGroupings = Split("| Amazing | grace how | sweet the | sound that | saved a | wretch like | me | I | once was | lost but | now am | found was | blind but | now I | see | |", '|');
     for (int i = 0; i < lyricGroupings.size(); i++)
     {
@@ -80,13 +85,13 @@ std::shared_ptr<Song> ConstructSong()
         }
     }
 
+    // Initialize the measures (which will calculate the positions of the chords and lyrics)
     for (int i = 0; i < staff->GetMeasureCount(); i++)
     {
         staff->GetMeasure(i)->Init(MusicDisplayConstants());
     }
 
     instrument->AddStaff(staff);
-
     song->AddInstrument(instrument);
     
     return song;
@@ -101,16 +106,9 @@ void RunDemo()
     Renderer& renderer = Renderer::GetInstance();
  
     // Start the main loop
-    while (renderer.m_Window.isOpen())
+    while (renderer.IsWindowOpen())
     {
-        // Process events
-        sf::Event event;
-        while (renderer.m_Window.pollEvent(event))
-        {
-            // Close window: exit
-            if (event.type == sf::Event::Closed)
-                renderer.m_Window.close();
-        }
+        renderer.HandleEvents();
 
         // Clear screen
         renderer.Clear();

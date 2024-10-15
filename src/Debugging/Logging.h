@@ -4,14 +4,14 @@
 
 // define log tag if it dosn't exist
 #if !defined(LOG_TAG)
-#define LOG_TAG "Musique C++"
+#define LOG_TAG "Harmonically C++"
 #endif
 
 #if defined ANDROID
 
 #include "AndroidDebug.h"
 
-#elif defined WEB
+#elif defined WEB || defined WINDOWS
 
 #include <assert.h>
 #include <stdio.h>

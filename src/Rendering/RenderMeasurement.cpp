@@ -2,7 +2,7 @@
 
 #include "Renderer.h"
 
-BoundingBox RenderMeasurement::GetTextBoundingBox(const Text& text)
+BoundingBox RenderMeasurement::GetTextBoundingBox(const RenderableText& text)
 {
     BoundingBox boundingBox = BoundingBox();
 

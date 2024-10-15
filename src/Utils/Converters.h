@@ -1,3 +1,7 @@
+/**
+* Various helpful type conversion and comparison functions.
+*/
+
 #pragma once
 
 #include <string>

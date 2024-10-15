@@ -1,3 +1,7 @@
+/**
+ * Contains various musical types (not all are used in this demo project).
+ */
+
 #pragma once
 
 #include <vector>
@@ -116,6 +120,10 @@ struct FontFamily {
     std::vector<std::string> fonts;
 };
 
+/**
+ * Structure that stores a font size. Can be intialized
+ * with a CSS size string (used in MusicXML).
+ */
 struct FontSize {
 
     FontSize() {}

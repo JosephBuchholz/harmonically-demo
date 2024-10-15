@@ -1,5 +1,5 @@
 /**
- * Defaults/settings for how the music should be displayed.
+ * Defaults/settings for how the music should be displayed. (Not all of them are used for this demo project).
  */
 
 #pragma once
@@ -36,8 +36,6 @@ struct MusicDisplayConstants
     float rightMargin = DEFAULT_RIGHT_MARGIN;
     float topMargin = DEFAULT_TOP_MARGIN;
     float bottomMargin = DEFAULT_BOTTOM_MARGIN;
-
-    //System::SystemLayout systemLayout = System::SystemLayout();
 
     float staffDistance = 80.0f;
 

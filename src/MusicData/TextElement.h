@@ -5,6 +5,9 @@
 #include "VisibleElement.h"
 #include "../Utils/BoundingBox.h"
 
+/**
+ * This class represents a text object that can be rendered.
+ */
 class TextElement : public VisibleElement
 {
 public:

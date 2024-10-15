@@ -4,7 +4,8 @@
 
 /**
  * An object that holds data needed to describe how a specific object
- * should be rendered (for example: color, font, or stroke width).
+ * should be rendered (for example: color, font, or stroke width). (Current renderer
+ * does not use its full functionality for this demo project).
  */
 struct Paint {
 

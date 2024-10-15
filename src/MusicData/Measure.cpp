@@ -1,17 +1,16 @@
 #include "Measure.h"
 
 #include <algorithm>
-#include <iostream>
 
 void Measure::Render(RenderData& renderData, Vec2<float> parentPosition) const
 {
     Vec2<float> currentPosition = parentPosition + position;
 
     // Add left barline
-    renderData.AddLine(Line(currentPosition, { currentPosition.x, currentPosition.y + renderData.displayConstants.measureBarlineHeight }, Paint()));
+    renderData.AddLine(RenderableLine(currentPosition, { currentPosition.x, currentPosition.y + renderData.displayConstants.measureBarlineHeight }, Paint()));
 
     // Add right barline
-    renderData.AddLine(Line({ currentPosition.x + width, currentPosition.y }, { currentPosition.x + width, currentPosition.y + renderData.displayConstants.measureBarlineHeight }, Paint()));
+    renderData.AddLine(RenderableLine({ currentPosition.x + width, currentPosition.y }, { currentPosition.x + width, currentPosition.y + renderData.displayConstants.measureBarlineHeight }, Paint()));
 
     // Render chords
     for (const auto& chord : m_Chords)
@@ -82,12 +81,10 @@ void Measure::Init(const MusicDisplayConstants& displayConstants)
 
         lyric->position = lyricPosition;
 
-        std::cout << "x: " << lyric->position.x << "y: " << lyric->position.y << std::endl;
-
         prevPos = { lyricPosition.x + std::max(dimensions.x + lyricSpace, (lyric->duration * beatWidth)), lyricPosY };
     }
 
-    // Set the width of this measure to the last lyrics or chord's position + its size
+    // Set the width of this measure to the maximum of the last lyric's or chord's position + its size
     // So that the measure is big enough to contain all the child lyrics and chords.
     float lastChordPositionX = 0.0f;
     float lastLyricPositionX = 0.0f;

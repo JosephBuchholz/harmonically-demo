@@ -1,12 +1,5 @@
 #include "BoundingBox.h"
 
-#include "../Debugging/Debug.h"
-
-BoundingBox::BoundingBox()
-{
-
-}
-
 bool BoundingBox::DoesOverlapWith(const BoundingBox& boundingBox) const
 {
     return (this->position.x < boundingBox.position.x + boundingBox.size.x &&
