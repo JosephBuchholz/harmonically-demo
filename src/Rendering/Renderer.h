@@ -33,9 +33,6 @@ public:
 
 	BoundingBox MeasureText(const std::string& text, const Paint& paint = Paint());
 
-private:
-	std::string EncodePaintObject(const Paint& paint, float scale = 1.0f);
-
 	// TODO: change
 public:
 	sf::RenderWindow m_Window;

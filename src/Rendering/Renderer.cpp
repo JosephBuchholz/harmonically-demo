@@ -11,7 +11,7 @@ Renderer& Renderer::GetInstance()
 }
 
 Renderer::Renderer()
-	: m_Window(sf::VideoMode(800, 600), "Harmonically Demo")
+	: m_Window(sf::VideoMode(1000, 600), "Harmonically Demo")
 {
     if (!currentFont.loadFromFile("assets/fonts/times.ttf"))
         std::cout << "Failed to load font file" << std::endl;
@@ -61,7 +61,15 @@ void Renderer::DrawText(const std::string& text, Vec2<float> position, const Pai
     m_Window.draw(rendererableText);
 }
 
-BoundingBox Renderer::MeasureText(const std::string &text, const Paint &paint)
+BoundingBox Renderer::MeasureText(const std::string& text, const Paint& paint)
 {
-    return BoundingBox();
+    sf::Text rendererableText(text, currentFont, paint.textSize * scale);
+
+    sf::FloatRect bounds = rendererableText.getLocalBounds();
+
+    BoundingBox boundingBox = BoundingBox();
+    boundingBox.size.x = bounds.width;
+    boundingBox.size.y = bounds.height;
+
+    return boundingBox;
 }

@@ -8,12 +8,16 @@
 #include "../Utils/BoundingBox.h"
 #include "ChordSymbol.h"
 
+/**
+ * Represetents a chord with a certain duration and position in the parent Measure.
+ */
 class Chord : public VisibleElement
 {
 public:
     Chord();
+    Chord(const std::string& chordName);
 
-    void Init(Vec2<float> pos);
+    void Init(Vec2<float> position);
 
     void Render(RenderData& renderData, Vec2<float> measurePosition) const;
 

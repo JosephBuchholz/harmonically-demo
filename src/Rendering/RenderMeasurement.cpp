@@ -1,6 +1,6 @@
 #include "RenderMeasurement.h"
 
-#include "Rendering/Renderer.h"
+#include "Renderer.h"
 
 BoundingBox RenderMeasurement::GetTextBoundingBox(const Text& text)
 {

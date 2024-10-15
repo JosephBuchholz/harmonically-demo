@@ -73,14 +73,14 @@ struct MusicDisplayConstants
     // chord sheet
     FontSize lyricFontSize = FontSize(12.0f);
 
-    float chordMarginFromBarline = 12.0f;
+    float chordMarginFromBarline = 8.0f;
     float beatWidth = 30.0f;
-    float chordPositionY = 22.0f;
-    float lyricPositionY = 50.0f;
+    float chordPositionY = 5.0f;
+    float lyricPositionY = 28.0f;
     float lyricSpaceWidth = 8.0f;
     float minimumMeasureWidth = 30.0f;
     bool displayReminderPickupLyrics = false;
 
-    float measureBarlineHeight = 28.0f;
+    float measureBarlineHeight = 22.0f;
     FontSize chordFontSize = FontSize(12.0f);
 };

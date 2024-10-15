@@ -49,16 +49,12 @@ MusicManager::MusicManager()
 void MusicManager::Render()
 {
     Renderer& renderer = Renderer::GetInstance();
-
-    renderer.DrawText("Hello World", { 50.0f, 50.0f });
-    renderer.DrawLine({ 0.0f, 0.0f }, { 200.0f, 100.0f });
-
     RenderData renderData = RenderData();
 
     m_Song->Render(renderData);
 
     // render
-    renderer.SetScale(5.0f);
+    renderer.SetScale(1.0f);
     renderer.SetOffset(renderData.offset);
 
     for (const Line& line : renderData.m_lines)

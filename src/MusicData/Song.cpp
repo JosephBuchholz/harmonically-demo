@@ -4,7 +4,7 @@ void Song::Render(RenderData& renderData) const
 {
     for (auto instrument : m_Instruments)
     {
-        instrument->Render(renderData);
+        instrument->Render(renderData, position);
     }
 }
 

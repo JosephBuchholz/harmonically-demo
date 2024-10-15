@@ -4,8 +4,9 @@
 
 #include "../Rendering/RenderData.h"
 #include "Instrument.h"
+#include "VisibleElement.h"
 
-class Song
+class Song : public VisibleElement
 {
 public:
     void Render(RenderData& renderData) const;

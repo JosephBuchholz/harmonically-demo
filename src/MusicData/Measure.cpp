@@ -1,11 +1,11 @@
 #include "Measure.h"
 
 #include <algorithm>
+#include <iostream>
 
 void Measure::Render(RenderData& renderData, Vec2<float> parentPosition) const
 {
     Vec2<float> currentPosition = parentPosition + position;
-    currentPosition.x += pickupWidth;
 
     renderData.AddLine(Line(currentPosition, { currentPosition.x, currentPosition.y + renderData.displayConstants.measureBarlineHeight }, Paint()));
     renderData.AddLine(Line({ currentPosition.x + width, currentPosition.y }, { currentPosition.x + width, currentPosition.y + renderData.displayConstants.measureBarlineHeight }, Paint()));
@@ -15,36 +15,9 @@ void Measure::Render(RenderData& renderData, Vec2<float> parentPosition) const
         chord->Render(renderData, currentPosition);
     }
 
-    /*if (isFirstMeasureOfSystem && !m_Lyrics.empty())
-    {
-        std::shared_ptr<LyricalPhrase> lyricalPhrase = lyrics[0]->parentLyricalPhrase;
-
-        if (lyricalPhrase)
-        {
-            for (const auto& lyric : lyricalPhrase->lyrics)
-            {
-                if (lyric->isPickupToNextMeasure)
-                {
-                    lyric->Render(renderData, settings, currentPosition);
-                }
-                else
-                    break;
-            }
-        }
-    }*/
-
-    /*if (lyricPickup)
-    {
-        for (const auto& lyric : lyricPickup->lyrics)
-        {
-            lyric->Render(renderData, settings, currentPosition, true);
-        }
-    }*/
-
     for (const auto& lyric : m_Lyrics)
     {
-        if (!lyric->isPickupToNextMeasure)
-            lyric->Render(renderData, currentPosition);
+        lyric->Render(renderData, currentPosition);
     }
 }
 
@@ -75,33 +48,11 @@ void Measure::Init(const MusicDisplayConstants& displayConstants)
         });
     
     std::shared_ptr<Lyric> previousLyric = nullptr;
-    bool pickupStarted = false;
-    std::shared_ptr<LyricPickup> currentLyricPickup = nullptr;
     for (const auto& lyric : m_Lyrics)
     {
         if (previousLyric != nullptr)
         {
             previousLyric->duration = lyric->beatPosition - previousLyric->beatPosition;
-        }
-
-        
-        if (lyric->startsPickup || pickupStarted)
-        {
-            pickupStarted = true;
-            lyric->isPickupToNextMeasure = true;
-
-            if (currentLyricPickup == nullptr)
-            {
-                currentLyricPickup = std::make_shared<LyricPickup>();
-            }
-
-            currentLyricPickup->lyrics.push_back(lyric);
-            lyric->parentLyricPickup = currentLyricPickup;
-        }
-        else
-        {
-            lyric->parentLyricPickup = nullptr;
-            lyric->isPickupToNextMeasure = false;
         }
         
         previousLyric = lyric;
@@ -135,11 +86,6 @@ void Measure::Init(const MusicDisplayConstants& displayConstants)
         }       
     }*/
 
-    if (lyricPickup)
-        pickupWidth = -lyricPickup->lyrics[0]->pickupPosition.x;
-    else
-        pickupWidth = 0.0f;
-
     if (previousLyric != nullptr)
         previousLyric->duration = duration - previousLyric->beatPosition;
 
@@ -159,12 +105,6 @@ void Measure::Init(const MusicDisplayConstants& displayConstants)
     Vec2<float> prevPos = { 0.0f, lyricPosY };
     for (const auto& lyric : m_Lyrics)
     {
-        if (lyric->isPickupToNextMeasure && lyric->parentLyricPickup && !displayReminderPickupLyrics)
-        {
-            lyric->Init({ 0.0f, 0.0f });
-            continue;
-        }
-
         Vec2<float> dimensions = lyric->lyricText.GetBoundingBox(Paint()).size;
 
         float chordPositionX = GetPositionXFromBeatPositionOfChords(lyric->beatPosition);
@@ -184,7 +124,9 @@ void Measure::Init(const MusicDisplayConstants& displayConstants)
             lyricPosition.x = chordPositionX;
         }
 
-        lyric->Init(lyricPosition);
+        lyric->position = lyricPosition;
+
+        std::cout << "x: " << lyric->position.x << "y: " << lyric->position.y << std::endl;
 
         prevPos = { lyricPosition.x + std::max(dimensions.x + lyricSpace, (lyric->duration * beatWidth)), lyricPosY };
     }

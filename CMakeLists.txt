@@ -20,7 +20,7 @@ add_executable(
     src/Utils/Converters.cpp
     src/Utils/Math.cpp
     src/Rendering/Renderer.cpp
-    src/Rendering/Renderer.cpp
+    src/Rendering/RenderMeasurement.cpp
     src/Rendering/MusicManager.cpp
     src/Rendering/RenderData.cpp
     src/Debugging/Logging.cpp

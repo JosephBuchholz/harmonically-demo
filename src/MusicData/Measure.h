@@ -24,9 +24,6 @@ private:
 
 public:
     float width = 0.0f;
-    float pickupWidth = 0.0f;
-
-    bool isFirstMeasureOfSystem = false;
 
     int divisions = 0;
 

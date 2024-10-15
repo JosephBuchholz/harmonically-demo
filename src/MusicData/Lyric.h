@@ -11,6 +11,9 @@
 class Lyric : public VisibleElement
 {
 public:
+    Lyric();
+    Lyric(const std::string& lyricText);
+
     void Init(Vec2<float> position);
 
     void Render(RenderData& renderData, Vec2<float> parentPosition, bool isPickup = false) const;
