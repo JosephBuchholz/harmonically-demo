@@ -1,21 +1,33 @@
-#include <SFML/Graphics.hpp>
-
+#include "Rendering/Renderer.h"
+#include "Rendering/MusicRenderer.h"
+ 
 int main()
 {
-    auto window = sf::RenderWindow({1920u, 1080u}, "CMake SFML Project");
-    window.setFramerateLimit(144);
+    MusicRenderer musicRenderer = MusicRenderer();
 
-    while (window.isOpen())
+    Renderer& renderer = Renderer::GetInstance();
+ 
+    // Start the main loop
+    while (renderer.m_Window.isOpen())
     {
-        for (auto event = sf::Event(); window.pollEvent(event);)
+        // Process events
+        sf::Event event;
+        while (renderer.m_Window.pollEvent(event))
         {
+            // Close window: exit
             if (event.type == sf::Event::Closed)
-            {
-                window.close();
-            }
+                renderer.m_Window.close();
         }
 
-        window.clear();
-        window.display();
+        // Clear screen
+        renderer.Clear();
+
+        // Render the music
+        musicRenderer.Render();
+ 
+        // Update the window
+        renderer.Display();
     }
+ 
+    return 0;
 }

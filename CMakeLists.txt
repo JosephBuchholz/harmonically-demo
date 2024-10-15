@@ -13,7 +13,20 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/Main.cpp)
+add_executable(
+    main
+
+    src/Main.cpp
+    src/Utils/Converters.cpp
+    src/Utils/Math.cpp
+    src/Rendering/Line.cpp
+    src/Rendering/Renderer.cpp
+    src/Rendering/Renderer.cpp
+    src/Rendering/MusicRenderer.cpp
+    src/Rendering/RenderData.cpp
+    src/Debugging/Logging.cpp
+
+    )
 target_link_libraries(main PRIVATE sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)
 
