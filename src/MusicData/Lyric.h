@@ -8,19 +8,50 @@
 
 #include "TextElement.h"
 
+/**
+ * A renderable object that represents a single lyric (word or syllable) of a song.
+ */
 class Lyric : public VisibleElement
 {
 public:
-    Lyric();
+
+    /**
+     * Constructs a Lyric object.
+     * 
+     * @param lyricText The the text of this Lyric object.
+     */
     Lyric(const std::string& lyricText);
 
-    void Init(Vec2<float> position);
-
+    /**
+     * Renders this class relative to the given parentPosition.
+     * 
+     * @param renderData The RenderData to render to.
+     * @param parentPosition The position of this object's parent.
+     */
     void Render(RenderData& renderData, Vec2<float> parentPosition, bool isPickup = false) const;
 
-public:
-    float beatPosition = 0.0f;
-    float duration = 0.0f;
+    /**
+     * Gets the bounds of this object.
+     * 
+     * @returns A BoundingBox.
+     */
+    BoundingBox GetBoundingBox() const;
 
-    TextElement lyricText;
+    /**
+     * Getter and setter for m_Duration.
+     */
+    float GetDuration() const { return m_Duration; }
+    void SetDuration(float duration) { m_Duration = duration; }
+
+    /**
+     * Getter and setter for m_BeatPostion.
+     */
+    float GetBeatPosition() const { return m_BeatPosition; }
+    void SetBeatPosition(float beatPosition) { m_BeatPosition = beatPosition; }
+
+private:
+    TextElement m_LyricText;
+
+    float m_Duration = 0.0f;
+    float m_BeatPosition = 0.0f;
 };

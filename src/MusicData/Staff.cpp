@@ -2,12 +2,12 @@
 
 void Staff::Render(RenderData& renderData, Vec2<float> parentPosition) const
 {
-    Vec2<float> currentPosition = position + parentPosition;
+    Vec2<float> currentPosition = m_Position + parentPosition;
     for (auto measure : m_Measures)
     {
         measure->Render(renderData, currentPosition);
 
-        currentPosition.x += measure->width;
+        currentPosition.x += measure->GetWidth();
     }
 }
 

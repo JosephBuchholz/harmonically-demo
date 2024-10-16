@@ -1,24 +1,16 @@
 #include "Chord.h"
 
-Chord::Chord()
-    : chordSymbol("C") {}
-
 Chord::Chord(const std::string& chordName)
-    : chordSymbol(chordName) {}
+    : m_ChordSymbol(chordName) {}
 
-void Chord::Render(RenderData& renderData, Vec2<float> measurePosition) const
+void Chord::Render(RenderData& renderData, Vec2<float> parentPosition) const
 {
-    chordSymbol.Render(renderData, measurePosition + position);
-}
-
-void Chord::Init(Vec2<float> position)
-{
-    this->position = position;
+    m_ChordSymbol.Render(renderData, parentPosition + m_Position);
 }
 
 BoundingBox Chord::GetBoundingBox() const
 {
-    BoundingBox bb = chordSymbol.GetBoundingBox();
-    bb.position += position;
+    BoundingBox bb = m_ChordSymbol.GetBoundingBox();
+    bb.position += m_Position;
     return bb;
 }

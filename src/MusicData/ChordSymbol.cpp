@@ -9,9 +9,9 @@ ChordSymbol::ChordSymbol(const std::string& chordName)
     m_TextElement.fontSize.size = 12.0f;
 }
 
-void ChordSymbol::Render(RenderData& renderData, Vec2<float> measurePosition) const
+void ChordSymbol::Render(RenderData& renderData, Vec2<float> parentPosition) const
 {
-    m_TextElement.Render(renderData, position + measurePosition, Paint());
+    m_TextElement.Render(renderData, m_Position + parentPosition, Paint());
 }
 
 BoundingBox ChordSymbol::GetBoundingBox() const

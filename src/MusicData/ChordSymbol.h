@@ -14,10 +14,27 @@
 class ChordSymbol : public VisibleElement
 {
 public:
+
+    /**
+     * Constructs a Chord object.
+     * 
+     * @param chordName The name of the chord symbol. Like for example: "C" or "Bm7b5".
+     */
     ChordSymbol(const std::string& chordName);
 
-    void Render(RenderData& renderData, Vec2<float> measurePosition) const;
+    /**
+     * Renders this class relative to the given parentPosition.
+     * 
+     * @param renderData The RenderData to render to.
+     * @param parentPosition The position of this object's parent.
+     */
+    void Render(RenderData& renderData, Vec2<float> parentPosition) const;
 
+    /**
+     * Gets the bounds of this object.
+     * 
+     * @returns A BoundingBox.
+     */
     BoundingBox GetBoundingBox() const;
 
 private:

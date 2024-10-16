@@ -13,22 +13,44 @@
 class Chord : public VisibleElement
 {
 public:
-    Chord();
+
+    /**
+     * Constructs a Chord object.
+     * 
+     * @param chordName The name of the chord symbol. Like for example: "C" or "Bm7b5".
+     */
     Chord(const std::string& chordName);
 
-    void Init(Vec2<float> position);
+    /**
+     * Renders this class relative to the given parentPosition.
+     * 
+     * @param renderData The RenderData to render to.
+     * @param parentPosition The position of this object's parent.
+     */
+    void Render(RenderData& renderData, Vec2<float> parentPosition) const;
 
-    void Render(RenderData& renderData, Vec2<float> measurePosition) const;
-
+    /**
+     * Gets the bounds of this object.
+     * 
+     * @returns A BoundingBox.
+     */
     BoundingBox GetBoundingBox() const;
 
-    void SetPosition(Vec2<float> position) { this->position = position; }
+    /**
+     * Getter and setter for m_Duration.
+     */
+    float GetDuration() const { return m_Duration; }
+    void SetDuration(float duration) { m_Duration = duration; }
 
-public:
-    ChordSymbol chordSymbol;
+    /**
+     * Getter and setter for m_BeatPostion.
+     */
+    float GetBeatPosition() const { return m_BeatPosition; }
+    void SetBeatPosition(float beatPosition) { m_BeatPosition = beatPosition; }
 
-    float duration = 1.0f;
+private:
+    ChordSymbol m_ChordSymbol;
 
-    float beatPosition = 0.0f;
-    float beatPositionInSong = 0.0f;
+    float m_Duration = 1.0f;
+    float m_BeatPosition = 0.0f;
 };

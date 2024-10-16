@@ -4,7 +4,7 @@ void Instrument::Render(RenderData& renderData, Vec2<float> parentPosition) cons
 {
     for (auto staff : m_Staves)
     {
-        staff->Render(renderData, position + parentPosition);
+        staff->Render(renderData, m_Position + parentPosition);
     }
 }
 

@@ -41,10 +41,10 @@ static std::vector<std::string> Split(const std::string& string, char delim)
 static std::shared_ptr<Song> ConstructSong()
 {
     std::shared_ptr<Song> song = std::make_shared<Song>("Amazing Grace", Vec2<float>{ 800.0f, 200.0f });
-    song->position = { 40.0f, 40.0f };
+    song->SetPosition({ 40.0f, 40.0f });
 
     std::shared_ptr<Instrument> instrument = std::make_shared<Instrument>("Guitar");
-    instrument->position = { 0.0f, 80.0f };
+    instrument->SetPosition({ 0.0f, 80.0f });
     
     std::shared_ptr<Staff> staff = std::make_shared<Staff>();
 
@@ -59,7 +59,7 @@ static std::shared_ptr<Song> ConstructSong()
         for (auto chordString : chordStrings)
         {
             std::shared_ptr<Chord> chord = std::make_shared<Chord>(chordString);
-            chord->beatPosition = currentBeatPosition;
+            chord->SetBeatPosition(currentBeatPosition);
             measure->AddChord(chord);
             currentBeatPosition += 1.0f;
         }
@@ -79,7 +79,7 @@ static std::shared_ptr<Song> ConstructSong()
         for (auto lyricString : lyricStrings)
         {
             std::shared_ptr<Lyric> lyric = std::make_shared<Lyric>(lyricString);
-            lyric->beatPosition = currentBeatPosition;
+            lyric->SetBeatPosition(currentBeatPosition);
             measure->AddLyric(lyric);
             currentBeatPosition += 1.0f;
         }
@@ -92,6 +92,7 @@ static std::shared_ptr<Song> ConstructSong()
     }
 
     instrument->AddStaff(staff);
+
     song->AddInstrument(instrument);
     
     return song;
@@ -108,6 +109,7 @@ void RunDemo()
     // Start the main loop
     while (renderer.IsWindowOpen())
     {
+        // Process events
         renderer.HandleEvents();
 
         // Clear screen

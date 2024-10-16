@@ -6,7 +6,7 @@ void TextElement::Render(RenderData& renderData, Vec2<float> parentPosition, Pai
 {
     ModifyPaint(parentPaint);
 
-    renderData.AddText(RenderableText(text, { position.x + parentPosition.x, position.y + parentPosition.y }, parentPaint));
+    renderData.AddText(RenderableText(text, { m_Position.x + parentPosition.x, m_Position.y + parentPosition.y }, parentPaint));
 }
 
 
