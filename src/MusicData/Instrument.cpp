@@ -1,10 +1,10 @@
 #include "Instrument.h"
 
-void Instrument::Render(RenderData& renderData, Vec2<float> parentPosition) const
+void Instrument::Render(RenderData& renderData, Vec2<float> parentPosition, int startMeasureIndex, int endMeasureIndex) const
 {
     for (auto staff : m_Staves)
     {
-        staff->Render(renderData, m_Position + parentPosition);
+        staff->Render(renderData, m_Position + parentPosition, startMeasureIndex, endMeasureIndex);
     }
 }
 

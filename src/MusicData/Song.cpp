@@ -11,13 +11,21 @@ void Song::Render(RenderData& renderData) const
 {
     m_SongName.Render(renderData, m_Position, Paint());
 
-    for (auto instrument : m_Instruments)
+    for (auto system : m_Systems)
     {
-        instrument->Render(renderData, m_Position);
+        for (auto instrument : m_Instruments)
+        {
+            instrument->Render(renderData, m_Position + system.position, system.beginningMeasureIndex, system.endingMeasureIndex);
+        }
     }
 }
 
 void Song::AddInstrument(std::shared_ptr<Instrument> instrument)
 {
     m_Instruments.push_back(instrument);
+}
+
+void Song::AddSystem(const System& system)
+{
+    m_Systems.push_back(system);
 }

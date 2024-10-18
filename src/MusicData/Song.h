@@ -6,6 +6,7 @@
 #include "Instrument.h"
 #include "VisibleElement.h"
 #include "TextElement.h"
+#include "System.h"
 
 /**
  * A renderable object that displays the sheet music for a song.
@@ -35,8 +36,16 @@ public:
      */
     void AddInstrument(std::shared_ptr<Instrument> instrument);
 
+    /**
+     * Adds a system to this song.
+     * 
+     * @param system The system to add.
+     */
+    void AddSystem(const System& system);
+
 private:
     std::vector<std::shared_ptr<Instrument>> m_Instruments;
+    std::vector<System> m_Systems;
 
     TextElement m_SongName;
 

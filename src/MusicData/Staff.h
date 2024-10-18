@@ -18,8 +18,10 @@ public:
      * 
      * @param renderData The RenderData to render to.
      * @param parentPosition The position of this object's parent.
+     * @param startMeasureIndex The measure index to start rendering at.
+     * @param endMeasureIndex The last measure index to render (the range is inclusive).
      */
-    void Render(RenderData& renderData, Vec2<float> parentPosition) const;
+    void Render(RenderData& renderData, Vec2<float> parentPosition, int startMeasureIndex, int endMeasureIndex) const;
 
     /**
      * Adds a new measure to this staff.

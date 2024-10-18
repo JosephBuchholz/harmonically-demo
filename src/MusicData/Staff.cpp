@@ -1,10 +1,12 @@
 #include "Staff.h"
 
-void Staff::Render(RenderData& renderData, Vec2<float> parentPosition) const
+void Staff::Render(RenderData& renderData, Vec2<float> parentPosition, int startMeasureIndex, int endMeasureIndex) const
 {
     Vec2<float> currentPosition = m_Position + parentPosition;
-    for (auto measure : m_Measures)
+    for (int i = startMeasureIndex; i <= endMeasureIndex; i++)
     {
+        std::shared_ptr<Measure> measure = m_Measures[i];
+
         measure->Render(renderData, currentPosition);
 
         currentPosition.x += measure->GetWidth();

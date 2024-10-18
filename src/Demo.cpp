@@ -43,45 +43,85 @@ static std::shared_ptr<Song> ConstructSong()
     std::shared_ptr<Song> song = std::make_shared<Song>("Amazing Grace", Vec2<float>{ 800.0f, 200.0f });
     song->SetPosition({ 40.0f, 40.0f });
 
+
     std::shared_ptr<Instrument> instrument = std::make_shared<Instrument>("Guitar");
     instrument->SetPosition({ 0.0f, 80.0f });
     
     std::shared_ptr<Staff> staff = std::make_shared<Staff>();
 
-    // Add some chords and measures
-    std::vector<std::string> chordGroupings = Split("| C Gm | C | F | C | C | C | G | G | C | C | F | C | Am | G6 | F | C |", '|');
-    for (const auto& chordGrouping : chordGroupings)
-    {
-        std::shared_ptr<Measure> measure = std::make_shared<Measure>();
+    // Add some chords, measures, and systems
+    int currentMeasureIndex = 0;
+    float currentSystemYPosition = 0.0f;
 
-        std::vector<std::string> chordStrings = Split(chordGrouping, ' ');
-        float currentBeatPosition = 0.0f;
-        for (auto chordString : chordStrings)
+    std::vector<std::string> chordLines = Split(
+R"(| C | C | F | C | C | C | G |
+| G | C | C | F | C | Am | G6 | F | C |
+| C | C | F | C | C | C | G |
+| G | C | C | F | C | Am | G6 | F | C |
+| C | C | F | C | C | C | G |
+| G | C | C | F | C | Am | G6 | F | C |)", '\n');
+    
+    for (const auto& chordLine : chordLines)
+    {
+        std::vector<std::string> chordGroupings = Split(chordLine, '|');
+
+        for (const auto& chordGrouping : chordGroupings)
         {
-            std::shared_ptr<Chord> chord = std::make_shared<Chord>(chordString);
-            chord->SetBeatPosition(currentBeatPosition);
-            measure->AddChord(chord);
-            currentBeatPosition += 1.0f;
+            std::shared_ptr<Measure> measure = std::make_shared<Measure>();
+
+            std::vector<std::string> chordStrings = Split(chordGrouping, ' ');
+            float currentBeatPosition = 0.0f;
+            for (auto chordString : chordStrings)
+            {
+                std::shared_ptr<Chord> chord = std::make_shared<Chord>(chordString);
+                chord->SetBeatPosition(currentBeatPosition);
+                measure->AddChord(chord);
+                currentBeatPosition += 1.0f;
+            }
+
+            staff->AddMeasure(measure);
         }
 
-        staff->AddMeasure(measure);
+        System system = System();
+        system.beginningMeasureIndex = currentMeasureIndex;
+        system.endingMeasureIndex = (chordGroupings.size() - 1) + currentMeasureIndex;
+        system.position = { 0.0f, currentSystemYPosition };
+        song->AddSystem(system);
+
+        currentMeasureIndex += chordGroupings.size();
+        currentSystemYPosition += 60.0f;
     }
 
     // Add some lyrics to those measures
-    std::vector<std::string> lyricGroupings = Split("| Amazing | grace how | sweet the | sound that | saved a | wretch like | me | I | once was | lost but | now am | found was | blind but | now I | see | |", '|');
-    for (int i = 0; i < lyricGroupings.size(); i++)
-    {
-        std::shared_ptr<Measure> measure = staff->GetMeasure(i);
-        std::string lyricGrouping = lyricGroupings[i];
+    std::vector<std::string> lyricLines = Split(
+R"(| Amazing | grace how | sweet the | sound that | saved a | wretch like | me |
+| I | once was | lost but | now am | found was | blind but | now I | see | |
+| 'Twas grace that | taught my | heart to | fear and | grace my | fears re - | leieved |
+| How | precious | did that | grace a - | ppear the | hour I | first be - | lieved | |
+| When we've been | there ten | thousand | years bright | shining | as the | sun |
+| We've | no less | days to | sing God's | praise than | when we'd | first be - | gun | |)", '\n');
 
-        std::vector<std::string> lyricStrings = Split(lyricGrouping, ' ');
-        float currentBeatPosition = 0.0f;
-        for (auto lyricString : lyricStrings)
+    currentMeasureIndex = 0;
+    for (const auto& lyricLine : lyricLines)
+    {
+        std::vector<std::string> lyricGroupings = Split(lyricLine, '|');
+
+        for (int i = 0; i < lyricGroupings.size(); i++)
         {
-            std::shared_ptr<Lyric> lyric = std::make_shared<Lyric>(lyricString);
-            lyric->SetBeatPosition(currentBeatPosition);
-            measure->AddLyric(lyric);
-            currentBeatPosition += 1.0f;
+            std::shared_ptr<Measure> measure = staff->GetMeasure(currentMeasureIndex);
+            std::string lyricGrouping = lyricGroupings[i];
+
+            std::vector<std::string> lyricStrings = Split(lyricGrouping, ' ');
+            float currentBeatPosition = 0.0f;
+            for (auto lyricString : lyricStrings)
+            {
+                std::shared_ptr<Lyric> lyric = std::make_shared<Lyric>(lyricString);
+                lyric->SetBeatPosition(currentBeatPosition);
+                measure->AddLyric(lyric);
+                currentBeatPosition += 1.0f;
+            }
+
+            currentMeasureIndex++;
         }
     }
 
