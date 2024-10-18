@@ -32,6 +32,13 @@ public:
     void Render(RenderData& renderData, Vec2<float> parentPosition) const;
 
     /**
+     * Calculates the bounding box of this measure.
+     * 
+     * @returns The bounding box.
+     */
+    BoundingBox GetBoundingBox() const;
+
+    /**
      * Adds a new chord to this measure.
      * 
      * @param chord The chord to add.

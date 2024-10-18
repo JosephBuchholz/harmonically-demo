@@ -10,6 +10,10 @@
 class BoundingBox
 {
 public:
+    BoundingBox() {}
+    BoundingBox(Vec2<float> position, Vec2<float> size)
+        : position(position), size(size) {}
+
     float GetLeft() const { return position.x; }
     float GetRight() const { return position.x + size.x; }
 

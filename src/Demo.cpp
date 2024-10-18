@@ -36,7 +36,7 @@ static std::vector<std::string> Split(const std::string& string, char delim)
 }
 
 /**
-* Creates the Song object for this demo.
+* Creates the Song object for this demo. (Normally this would be parsed from a file).
 */
 static std::shared_ptr<Song> ConstructSong()
 {
@@ -51,7 +51,6 @@ static std::shared_ptr<Song> ConstructSong()
 
     // Add some chords, measures, and systems
     int currentMeasureIndex = 0;
-    float currentSystemYPosition = 0.0f;
 
     std::vector<std::string> chordLines = Split(
 R"(| C | C | F | C | C | C | G |
@@ -85,11 +84,9 @@ R"(| C | C | F | C | C | C | G |
         System system = System();
         system.beginningMeasureIndex = currentMeasureIndex;
         system.endingMeasureIndex = (chordGroupings.size() - 1) + currentMeasureIndex;
-        system.position = { 0.0f, currentSystemYPosition };
         song->AddSystem(system);
 
         currentMeasureIndex += chordGroupings.size();
-        currentSystemYPosition += 60.0f;
     }
 
     // Add some lyrics to those measures
@@ -134,6 +131,8 @@ R"(| Amazing | grace how | sweet the | sound that | saved a | wretch like | me |
     instrument->AddStaff(staff);
 
     song->AddInstrument(instrument);
+
+    song->CalculateSystemPositions();
     
     return song;
 }

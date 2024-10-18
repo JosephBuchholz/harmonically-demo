@@ -25,6 +25,11 @@ void Measure::Render(RenderData& renderData, Vec2<float> parentPosition) const
     }
 }
 
+BoundingBox Measure::GetBoundingBox() const
+{
+    return BoundingBox(m_Position, { m_Width, 50.0f });
+}
+
 void Measure::Init(const MusicDisplayConstants& displayConstants)
 {
     float barlineMargin = displayConstants.chordMarginFromBarline;

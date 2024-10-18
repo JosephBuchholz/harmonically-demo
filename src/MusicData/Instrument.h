@@ -34,6 +34,15 @@ public:
     void Render(RenderData& renderData, Vec2<float> parentPosition, int startMeasureIndex, int endMeasureIndex) const;
 
     /**
+     * Calculates the bounding box of a section of this instrument given the measure range.
+     * 
+     * @param startMeasureIndex The measure index to start at.
+     * @param endMeasureIndex The measure index to end at (inclusivly).
+     * @returns The bounding box.
+     */
+    BoundingBox GetBoundingBox(int startMeasureIndex, int endMeasureIndex) const;
+
+    /**
      * Adds a new staff to this instrument.
      * 
      * @param staff The staff to add.

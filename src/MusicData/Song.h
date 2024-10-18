@@ -30,6 +30,11 @@ public:
     void Render(RenderData& renderData) const;
 
     /**
+     * Calcualtes the positions of each system.
+     */
+    void CalculateSystemPositions();
+
+    /**
      * Adds an instrument to this song.
      * 
      * @param instrument The instrument to add.
